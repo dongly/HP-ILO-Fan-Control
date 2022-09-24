@@ -12,11 +12,11 @@ if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
     cd ~/autofan
     echo "Installing required packages..."
     apt install sshpass wget lm-sensors jq -y
-    echo -e "\e[92mDownloading ILO_250 for ROM upgrade\e[0m"
-    wget -q https://gh.tj20.top/https://github.com/dongly/HP-ILO-Fan-Control/tree/me/Files/ilo_250
+    # echo -e "\e[92mDownloading ILO_250 for ROM upgrade\e[0m"
+    # wget -q https://gh.tj20.top/https://github.com/dongly/HP-ILO-Fan-Control/tree/me/Files/ilo_250
     echo -e "\e[92m Creating autofan service\e[0m"
-    wget -q https://gh.tj20.top/https://raw.githubusercontent.com/dongly/HP-ILO-Fan-Control/me/Files/autofan.service
-    mv autofan.service /etc/systemd/system/
+    # wget -q https://gh.tj20.top/https://raw.githubusercontent.com/dongly/HP-ILO-Fan-Control/me/Files/autofan.service
+    mv Files/autofan.service /etc/systemd/system/
     echo -e "\e[92m autofan service created\e[0m"
     read -rep $'Which server are you running? (Enter 1-4)
     1. DL360p G8 (No ESXi)
@@ -47,15 +47,18 @@ if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
     esac
 
     echo "Preping autofan.sh for $HOSTTYPE"
-    echo "Downloading latest autofan.sh"
-    wget -q https://gh.tj20.top/https://raw.githubusercontent.com/dongly/HP-ILO-Fan-Control/me/Files/$AUTOFANFILE -O autofan.sh
+    echo "Installing autofan.sh"
+    # wget -q https://gh.tj20.top/https://raw.githubusercontent.com/dongly/HP-ILO-Fan-Control/me/Files/$AUTOFANFILE -O autofan.sh
+    cp ./Files/$AUTOFANFILE autofan
+    chmod +x autofan
     read -rep 'Enter iLO Username: ' ILOUSERNAME
     read -rep 'Enter iLO Password: ' ILOPASSWORD
     read -rep 'Enter iLO IP/hostname: ' ILOHOST
-    sed -ri "s/your username/$ILOUSERNAME/" autofan.sh
-    sed -ri "s/your password/$ILOPASSWORD/" autofan.sh
-    sed -ri "s/your ilo ip/$ILOHOST/" autofan.sh
-    mv autofan.sh /usr/bin
+    sed -ri "s/your username/$ILOUSERNAME/" autofan
+    sed -ri "s/your password/$ILOPASSWORD/" autofan
+    sed -ri "s/your ilo ip/$ILOHOST/" autofan
+    rm -f /usr/bin/autofan
+    mv autofan /usr/bin
 
     echo -e "\e[92mDone! Please visit the GitHub page to follow the instructions!\e[0m"
     echo -e "\e[1\https://github.com/That-Guy-Jack/HP-ILO-Fan-Control\e[0m"
