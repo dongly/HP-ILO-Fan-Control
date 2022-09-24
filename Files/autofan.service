@@ -4,4 +4,4 @@ Description=Fan speed controller using autofan.sh
 [Service]
 Restart=always
 RestartSec=10s
-ExecStart=/bin/bash /usr/bin/autofan.sh 
+ExecStart=/bin/bash /usr/bin/autofan
