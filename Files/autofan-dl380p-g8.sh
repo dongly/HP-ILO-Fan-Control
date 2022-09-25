@@ -75,12 +75,12 @@ else
 fi
 
 echo Set Fan Max:
-echo "1: $((${p0_max} * 100 / 256))%"
-echo "2: $((${p1_max} * 100 / 256))%"
-echo "3: $((${p2_max} * 100 / 256))%"
-echo "4: $((${p3_max} * 100 / 256))%"
-echo "5: $((${p4_max} * 100 / 256))%"
-echo "6: $((${p5_max} * 100 / 256))%"
+echo "Fan1: $((${p0_max} * 100 / 255))%"
+echo "Fan2: $((${p1_max} * 100 / 255))%"
+echo "Fan3: $((${p2_max} * 100 / 255))%"
+echo "Fan4: $((${p3_max} * 100 / 255))%"
+echo "Fan5: $((${p4_max} * 100 / 255))%"
+echo "Fan6: $((${p5_max} * 100 / 255))%"
 
 ssh $SSH_OPTIONS $USERNAME@$ILOIP "fan p 0 max ${p0_max}"
 ssh $SSH_OPTIONS $USERNAME@$ILOIP "fan p 1 max ${p1_max}"
