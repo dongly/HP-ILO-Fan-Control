@@ -91,6 +91,11 @@ EOF
     echo 当前 /etc/autofan.conf:
     cat /etc/autofan.conf
 
+    systemctl daemon-reload
+    systemctl start autofan
+    systemctl enable autofan
+    systemctl status autofan
+
     echo -e "\e[92mDone! Please visit the GitHub page to follow the instructions!\e[0m"
     echo -e "\e[1\https://github.com/That-Guy-Jack/HP-ILO-Fan-Control\e[0m"
     ;;
