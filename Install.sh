@@ -60,13 +60,14 @@ if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
     chmod +x $INSTALL_PATH
 
     is_new_conf=1
-    if [ -d /etc/autofan.conf ]; then
-        read -rep "/etc/autofan.conf 已存在,更新? (y/N): " ACCEPTED
+    if [ -e /etc/autofan.conf ]; then
+        echo /etc/autofan.conf 已存在
+        read -rep "更新? (y/N): " ACCEPTED
         if [[ ! ${ACCEPTED,,} =~ ^[y] ]]; then
             is_new_conf=0
         fi
     fi
-    if [[ is_new_conf == 1 ]]; then
+    if [[ is_new_conf -eq 1 ]]; then
         read -rep 'Enter iLO Username: ' ILOUSERNAME
         # read -rep 'Enter iLO Password: ' ILOPASSWORD
         read -rep 'Enter iLO IP/hostname: ' ILOHOST
