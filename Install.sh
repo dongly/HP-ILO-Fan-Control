@@ -62,10 +62,13 @@ if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
     # read -rep 'Enter iLO Password: ' ILOPASSWORD
     read -rep 'Enter iLO IP/hostname: ' ILOHOST
 
-    cat /etc/autofan.conf <<EOF
+    cat >/etc/autofan.conf <<EOF
 USERNAME=$ILOUSERNAME
 ILOIP=$ILOHOST
 EOF
+
+    echo /etc/autofan.conf :
+    cat /etc/autofan.conf
 
     echo -e "\e[92mDone! Please visit the GitHub page to follow the instructions!\e[0m"
     echo -e "\e[1\https://github.com/That-Guy-Jack/HP-ILO-Fan-Control\e[0m"
