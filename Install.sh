@@ -61,8 +61,9 @@ if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
 
     is_new_conf=1
     if [ -e /etc/autofan.conf ]; then
-        echo /etc/autofan.conf 已存在
-        read -rep "更新? (y/N): " ACCEPTED
+        echo /etc/autofan.conf:
+        cat /etc/autofan.conf
+        read -rep " /etc/autofan.conf 已存在,更新否? (y/N): " ACCEPTED
         if [[ ! ${ACCEPTED,,} =~ ^[y] ]]; then
             is_new_conf=0
         fi
