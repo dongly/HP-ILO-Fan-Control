@@ -26,11 +26,13 @@ case ${ACCEPTED:=yes} in
     # wget -q https://gh.tj20.top/https://raw.githubusercontent.com/dongly/HP-ILO-Fan-Control/me/Files/autofan.service
     cp -f $base_dir/Files/autofan.service /etc/systemd/system/
     echo -e "\e[92m autofan service created\e[0m"
-    read -rep $'Which server are you running? (Enter 1-4)
+    read -rep $'Which server are you running?
     1. DL360p G8 (No ESXi)
     2. DL380p G8 (no ESXi)
     3. DL360p G8 (ESXi-based)
-    4. DL380p G8 (ESXi-based)\n' HOSTCHOICE
+    4. DL380p G8 (ESXi-based)
+    (Enter 1-4,default 2)' HOSTCHOICE
+    echo Host Id is ${HOSTCHOICE:- 2}
     case $HOSTCHOICE in
     1)
         AUTOFANFILE="autofan.sh"
