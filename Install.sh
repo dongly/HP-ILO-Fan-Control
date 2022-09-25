@@ -24,7 +24,7 @@ case ${ACCEPTED:=yes} in
     # wget -q https://gh.tj20.top/https://github.com/dongly/HP-ILO-Fan-Control/tree/me/Files/ilo_250
     echo -e "\e[92m Creating autofan service\e[0m"
     # wget -q https://gh.tj20.top/https://raw.githubusercontent.com/dongly/HP-ILO-Fan-Control/me/Files/autofan.service
-    mv $base_dir/Files/autofan.service /etc/systemd/system/
+    cp -f $base_dir/Files/autofan.service /etc/systemd/system/
     echo -e "\e[92m autofan service created\e[0m"
     read -rep $'Which server are you running? (Enter 1-4)
     1. DL360p G8 (No ESXi)
