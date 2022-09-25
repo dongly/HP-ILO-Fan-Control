@@ -58,16 +58,25 @@ if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
     # wget -q https://gh.tj20.top/https://raw.githubusercontent.com/dongly/HP-ILO-Fan-Control/me/Files/$AUTOFANFILE -O autofan.sh
     cp -f $base_dir/Files/$AUTOFANFILE $INSTALL_PATH
     chmod +x $INSTALL_PATH
-    read -rep 'Enter iLO Username: ' ILOUSERNAME
-    # read -rep 'Enter iLO Password: ' ILOPASSWORD
-    read -rep 'Enter iLO IP/hostname: ' ILOHOST
 
-    cat >/etc/autofan.conf <<EOF
+    is_new_conf=1
+    if [ -d /etc/autofan.conf ]; then
+        read -rep "/etc/autofan.conf 已存在,更新? (y/N): " ACCEPTED
+        if [[ ! ${ACCEPTED,,} =~ ^[y] ]]; then
+            is_new_conf=0
+        fi
+    fi
+    if [[ is_new_conf == 1 ]]; then
+        read -rep 'Enter iLO Username: ' ILOUSERNAME
+        # read -rep 'Enter iLO Password: ' ILOPASSWORD
+        read -rep 'Enter iLO IP/hostname: ' ILOHOST
+
+        cat >/etc/autofan.conf <<EOF
 USERNAME=$ILOUSERNAME
 ILOIP=$ILOHOST
 EOF
-
-    echo /etc/autofan.conf :
+    fi
+    echo /etc/autofan.conf:
     cat /etc/autofan.conf
 
     echo -e "\e[92mDone! Please visit the GitHub page to follow the instructions!\e[0m"
