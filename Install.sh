@@ -13,8 +13,9 @@ base_dir=$(
 )
 
 echo "You are about to download and install the required items for HP ILO4 fan control."
-read -rep "Do you accept? (y/N): " ACCEPTED
+read -rep "Do you accept? (Y/n): " ACCEPTED
 ACCEPTED=${ACCEPTED:- "y"}
+echo ACCEPTED = $ACCEPTED
 if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
     # mkdir -p ~/autofan
     # cd ~/autofan
