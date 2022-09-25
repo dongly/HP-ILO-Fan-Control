@@ -67,10 +67,13 @@ case ${ACCEPTED:=yes} in
 
         read -rep " /etc/autofan.conf 已存在,更新否? (y/N): " ACCEPTED2
         case {$ACCEPTED2:=no} in
-        [nN][oO] | [nN])
+        [yY][eE][sS] | [yY])
+            echo
+            ;;
+
+        *)
             is_new_conf=0
             ;;
-        *) ;;
 
         esac
     fi
@@ -84,7 +87,7 @@ USERNAME=$ILOUSERNAME
 ILOIP=$ILOHOST
 EOF
     fi
-    echo /etc/autofan.conf:
+    echo 当前 /etc/autofan.conf:
     cat /etc/autofan.conf
 
     echo -e "\e[92mDone! Please visit the GitHub page to follow the instructions!\e[0m"
