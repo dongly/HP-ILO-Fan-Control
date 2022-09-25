@@ -74,12 +74,7 @@ else
     p2_max=40
 fi
 
-echo Set Fan Max: 1: $((${p0_max} * 100 / 256))%
-2: $((${p1_max} * 100 / 256))%
-3: $((${p2_max} * 100 / 256))%
-4: $((${p3_max} * 100 / 256))%
-5: $((${p4_max} * 100 / 256))%
-6: $((${p5_max} * 100 / 256))%
+echo "Set Fan Max: 1: $((${p0_max} * 100 / 256))%, 2: $((${p1_max} * 100 / 256))%, 3: $((${p2_max} * 100 / 256))%, 4: $((${p3_max} * 100 / 256))%, 5: $((${p4_max} * 100 / 256))%, 6: $((${p5_max} * 100 / 256))%""
 
 ssh $SSH_OPTIONS $USERNAME@$ILOIP "fan p 0 max ${p0_max}"
 ssh $SSH_OPTIONS $USERNAME@$ILOIP "fan p 1 max ${p1_max}"
