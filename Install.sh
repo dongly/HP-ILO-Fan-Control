@@ -32,9 +32,7 @@ case ${ACCEPTED:=yes} in
     3. DL360p G8 (ESXi-based)
     4. DL380p G8 (ESXi-based)
     (Enter 1-4,default 2)' HOSTCHOICE
-    HOSTCHOICE=${HOSTCHOICE:=2}
-    echo Host Id is $HOSTCHOICE
-    case $HOSTCHOICE in
+    case ${HOSTCHOICE:=2} in
     1)
         AUTOFANFILE="autofan.sh"
         HOSTTYPE="DL360p G8 (No ESXi)"
@@ -69,7 +67,7 @@ case ${ACCEPTED:=yes} in
         cat /etc/autofan.conf
 
         read -rep " /etc/autofan.conf 已存在,更新否? (y/N): " ACCEPTED2
-        case {$ACCEPTED2:=no} in
+        case ${ACCEPTED2:=no} in
         [yY][eE][sS] | [yY])
             echo
             ;;
