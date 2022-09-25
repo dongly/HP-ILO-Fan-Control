@@ -1,7 +1,11 @@
 [Unit]
 Description=Fan speed controller using autofan.sh
+After=network.target
 
 [Service]
 Restart=always
 RestartSec=10s
 ExecStart=/bin/bash /usr/bin/autofan
+
+[Install]
+WantedBy=default.target

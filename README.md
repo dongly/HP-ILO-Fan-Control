@@ -14,6 +14,12 @@ Currently using ILO4 Version 2.60 - Working on updating to 2.77 <https://github.
 
 **READ `SECURITY-SWITCH.MD`, IT INCLUDES A LOT OF INFORMATION.**
 
+## Clone
+
+```shell
+git clone https://gh.tj20.top/https://github.com/dongly/HP-ILO-Fan-Control.git
+```
+
 ## Installation
 
 1. Switch iLO into maintenance mode, then reboot. (On the DL360 G8, this is located near the backplane connectors to the motherboard.)
