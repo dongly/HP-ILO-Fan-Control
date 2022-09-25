@@ -15,8 +15,8 @@ base_dir=$(
 echo "You are about to download and install the required items for HP ILO4 fan control."
 read -rep "Do you accept? (Y/n): " ACCEPTED
 ACCEPTED=${ACCEPTED:- "y"}
-echo ACCEPTED = $ACCEPTED
-if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
+case $ACCEPTED in
+[yY][eE][sS] | [yY])
     # mkdir -p ~/autofan
     # cd ~/autofan
     echo "Installing required packages..."
@@ -65,10 +65,16 @@ if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
     if [ -e /etc/autofan.conf ]; then
         echo /etc/autofan.conf:
         cat /etc/autofan.conf
-        read -rep " /etc/autofan.conf 已存在,更新否? (y/N): " ACCEPTED
-        if [[ ! ${ACCEPTED,,} =~ ^[y] ]]; then
+
+        read -rep " /etc/autofan.conf 已存在,更新否? (y/N): " ACCEPTED2
+        ACCEPTED2=${ACCEPTED2:- "n"}
+        case $ACCEPTED2 in
+        [nN][oO] | [nN])
             is_new_conf=0
-        fi
+            ;;
+        *) ;;
+
+        esac
     fi
     if [[ is_new_conf -eq 1 ]]; then
         read -rep 'Enter iLO Username: ' ILOUSERNAME
@@ -85,7 +91,10 @@ EOF
 
     echo -e "\e[92mDone! Please visit the GitHub page to follow the instructions!\e[0m"
     echo -e "\e[1\https://github.com/That-Guy-Jack/HP-ILO-Fan-Control\e[0m"
-else
+    ;;
+
+*)
     echo -e "\e[31m:( exiting\e[0m"
     exit 0
-fi
+    ;;
+esac
