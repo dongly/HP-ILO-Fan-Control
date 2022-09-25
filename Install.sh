@@ -14,8 +14,7 @@ base_dir=$(
 
 echo "You are about to download and install the required items for HP ILO4 fan control."
 read -rep "Do you accept? (Y/n): " ACCEPTED
-ACCEPTED=${ACCEPTED:- "y"}
-case $ACCEPTED in
+case ${ACCEPTED:=yes} in
 [yY][eE][sS] | [yY])
     # mkdir -p ~/autofan
     # cd ~/autofan
@@ -67,8 +66,7 @@ case $ACCEPTED in
         cat /etc/autofan.conf
 
         read -rep " /etc/autofan.conf 已存在,更新否? (y/N): " ACCEPTED2
-        ACCEPTED2=${ACCEPTED2:- "n"}
-        case $ACCEPTED2 in
+        case {$ACCEPTED2:=no} in
         [nN][oO] | [nN])
             is_new_conf=0
             ;;
