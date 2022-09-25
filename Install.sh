@@ -7,7 +7,10 @@ if [ $(id -u) -ne 0 ]; then
     exit 126
 fi
 
-base_dir=$(cd "$(dirname "$0")";pwd)
+base_dir=$(
+    cd "$(dirname "$0")"
+    pwd
+)
 
 echo "You are about to download and install the required items for HP ILO4 fan control."
 read -rep "Do you accept? (y/N): " ACCEPTED
@@ -56,11 +59,13 @@ if [[ ${ACCEPTED,,} =~ ^[y] ]]; then
     cp -f $base_dir/Files/$AUTOFANFILE $INSTALL_PATH
     chmod +x $INSTALL_PATH
     read -rep 'Enter iLO Username: ' ILOUSERNAME
-    read -rep 'Enter iLO Password: ' ILOPASSWORD
+    # read -rep 'Enter iLO Password: ' ILOPASSWORD
     read -rep 'Enter iLO IP/hostname: ' ILOHOST
-    sed -ri "s/your username/$ILOUSERNAME/" $INSTALL_PATH
-    sed -ri "s/your password/$ILOPASSWORD/" $INSTALL_PATH
-    sed -ri "s/your ilo ip/$ILOHOST/" $INSTALL_PATH
+
+    cat /etc/autofan.conf <<EOF
+USERNAME=$ILOUSERNAME
+ILOIP=$ILOHOST
+EOF
 
     echo -e "\e[92mDone! Please visit the GitHub page to follow the instructions!\e[0m"
     echo -e "\e[1\https://github.com/That-Guy-Jack/HP-ILO-Fan-Control\e[0m"

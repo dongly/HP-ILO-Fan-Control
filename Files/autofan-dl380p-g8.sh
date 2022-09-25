@@ -8,9 +8,12 @@
 # rm mycron
 # chmod +x /autofan.sh
 #
-PASSWORD="your password"
-USERNAME="your username"
-ILOIP="your ilo ip"
+# PASSWORD="your password"
+# USERNAME="your username"
+# ILOIP="your ilo ip"
+
+source /etc/autofan.conf
+
 SSH_OPTIONS="-oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostkeyAlgorithms=+ssh-rsa"
 
 T1="$(sensors -Aj coretemp-isa-0000 | jq '.[][] | to_entries[] | select(.key | endswith("input")) | .value' | sort -rn | head -n1)"
