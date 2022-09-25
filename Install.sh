@@ -32,7 +32,8 @@ case ${ACCEPTED:=yes} in
     3. DL360p G8 (ESXi-based)
     4. DL380p G8 (ESXi-based)
     (Enter 1-4,default 2)' HOSTCHOICE
-    echo Host Id is ${HOSTCHOICE:=2}
+    $HOSTCHOICE=${HOSTCHOICE:=2}
+    echo Host Id is $HOSTCHOICE
     case $HOSTCHOICE in
     1)
         AUTOFANFILE="autofan.sh"
