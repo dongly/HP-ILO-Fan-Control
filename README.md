@@ -41,13 +41,17 @@ DL360p Gen8
 
 ### 2U Servers
 
-DL380p Gen8
+DL380p Gen8 
 
 DL380p Gen9
 
 DL80 Gen9 - Tested by @rootless4real
 
 SL4540 Gen8 - Tested by @YoSiJo
+
+HPE 2U StoreEasy 1650 - Tested by @nicr4wks
+
+HP 2U ProLiant XL420 Gen9 - Tested by @bogdik
 
 ## Notes
 
@@ -62,6 +66,7 @@ SL4540 Gen8 - Tested by @YoSiJo
 - [x] Add info about the security switch
 - [x] Allow users to input iLO parameters when using `install.sh` 
 - [x] Make the install.sh script have fun colors :D - added thanks to @TannerFilip
+- [x] Add features mentioned in That-Guy-Jack/HP-ILO-Fan-Control#15
 
 ### Links and other stuff
 
